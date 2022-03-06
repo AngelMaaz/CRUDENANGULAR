@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "crudangular-25dee": {
+      "hosting": {
+        "crudangular": [
+          "crudangular-25dee"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "crudangular-25dee"
+  }
+}

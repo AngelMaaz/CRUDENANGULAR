@@ -17,9 +17,9 @@
                <div class="row">
                    <div class="col-lg-7">
                     <div class="input-group mb-3 input-group-lg">
-                        <span class="input-group-text"><i [class.green-icon]="this.form.get('fechaVencimiento')?.valid" [class.red-icon]="this.form.get('fechaVencimiento')?.invalid && this.form.get('fechaVencimiento')?.touched"
+                        <span class="input-group-text"><i [class.green-icon]="this.form.get('fechaExpiracion')?.valid" [class.red-icon]="this.form.get('fechaExpiracion')?.invalid && this.form.get('fechaExpiracion')?.touched"
                             class="fa-solid fa-calendar"></i></span>
-                        <input type="text" class="form-control" placeholder="Fecha de vencimiento" formControlName="fechaVencimiento" maxlength="5">
+                        <input type="text" class="form-control" placeholder="Fecha de expiracion" formControlName="fechaExpiracion" maxlength="5">
                     </div>
                    </div>
 
@@ -32,7 +32,7 @@
                    </div>
                </div>
                <div class="d-grid gap-2">
-                <button class="btn btn-outline-dark" type="submit">Enviar</button>
+                <button [disabled]="form.invalid" class="btn btn-outline-dark" type="submit">Enviar</button>
               </div>
         </form>
     </div>
