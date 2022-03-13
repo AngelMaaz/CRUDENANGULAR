@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="titulo">Crear Tarjeta</h5>
-        <form [formGroup]="form" (ngSubmit)="crearTarjeta()">
+        <h5 class="titulo">{{titulo }}</h5>
+        <form [formGroup]="form" (ngSubmit)="guardarTarjeta()">
 
             <div class="input-group mb-3 input-group-lg">
                 <span class="input-group-text"><i [class.green-icon]="this.form.get('titular')?.valid"[class.red-icon]="this.form.get('titular')?.invalid && this.form.get('titular')?.touched" class="fa-solid fa-user"></i></span>

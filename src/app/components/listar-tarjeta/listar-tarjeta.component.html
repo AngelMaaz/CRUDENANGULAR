@@ -3,12 +3,12 @@
         <h5 class="titulo">Listado de tarjetas</h5>
         <table class="table">
             <tbody>
-                <tr>
-                    <td>José</td>
-                    <td>123354555</td>
-                    <td>02/23</td>
-                    <td><i class="fa-solid text-info fa-pen-to-square"></i></td>
-                    <td><i class="fa-solid text-danger fa-trash"></i></td>
+                <tr *ngFor="let tarjeta of listTarjetas">
+                    <td>{{tarjeta.titular}}</td>
+                    <td>{{tarjeta.numeroTarjeta}}</td>
+                    <td>{{tarjeta.fechaExpiracion}}</td>
+                    <td><i (click)="editarTarjeta(tarjeta)" class="fa-solid text-info fa-pen-to-square"></i></td>
+                    <td><i (click)="eliminarTarjeta(tarjeta.id)" class="fa-solid text-danger fa-trash"></i></td>
                 </tr>
             </tbody>
         </table>

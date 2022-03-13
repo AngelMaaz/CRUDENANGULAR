@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CrearTarjetaComponent implements OnInit {
 form: FormGroup;
+titulo="Crear Tarjeta"
+id: string | undefined;
   constructor(private fb: FormBuilder,
     private _tarjetaService: TarjetaService,
     private toaster: ToastrService) {
@@ -23,8 +25,30 @@ form: FormGroup;
    }
 
   ngOnInit(): void {
+    this._tarjetaService.getTarjetaEdit().subscribe(data =>{
+     this.titulo = "Editar Tarjeta";
+     this.id = data.id;
+     this.form.patchValue({
+       titular: data.titular,
+       numeroTarjeta: data.numeroTarjeta,
+       fechaExpiracion: data.fechaExpiracion,
+       cvv: data.cvv
+     })
+    })
   }
-crearTarjeta(){
+guardarTarjeta(){
+
+if(this.id === undefined){
+  this.agregarTarjeta();
+
+}else{
+  this.editarTarjeta(this.id);
+
+}
+
+
+}
+agregarTarjeta(){
   const TARJETA: TarjetaCredito={
     titular: this.form.value.titular,
     numeroTarjeta: this.form.value.numeroTarjeta,
@@ -37,5 +61,22 @@ crearTarjeta(){
     this.toaster.success('Tarjeta de credito guardada','Guardado');
     this.form.reset();
   } )
+
+}
+editarTarjeta(id: string){
+  const TARJETA: any={
+    titular: this.form.value.titular,
+    numeroTarjeta: this.form.value.numeroTarjeta,
+    fechaExpiracion: this.form.value.fechaExpiracion,
+    cvv: this.form.value.cvv,
+    fechaActualizacion: new Date(),
+  }
+  this._tarjetaService.editarTarjeta(id, TARJETA).then(() => {
+    this.titulo="Agregar Tarjeta";
+    this.id= undefined;
+    this.toaster.info('Tarjeta actualizada correctamente','Actualización');
+    this.form.reset();
+  } )
+  
 }
 }
